@@ -1,0 +1,8 @@
+{% extends 'papers/base.html' %}
+{% block title %}Subject Not Found{% endblock %}
+{% block content %}
+<section class="subject-header">
+    <h1>Subject Not Found</h1>
+    <p>Sorry, that subject doesn't exist. <a href="{% url 'home' %}">Go back home</a>.</p>
+</section>
+{% endblock %}

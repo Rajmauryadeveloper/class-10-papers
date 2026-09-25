@@ -1,0 +1,24 @@
+{% extends 'papers/base.html' %}
+
+{% block title %}Class 10 Subject Papers - Home{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Class 10th — All Subject Papers</h1>
+    <p>
+        Welcome! This site brings together syllabus topics, notes and sample papers
+        for all five Class 10 subjects in one place. Pick a subject below to get
+        started, view its content, and ask any question you have directly on that page.
+    </p>
+</section>
+
+<section class="subject-grid">
+    {% for s in subjects %}
+        <a class="subject-btn" href="{% url 'subject_detail' s.slug %}">
+            <span class="subject-icon">{{ s.icon }}</span>
+            <span class="subject-name">{{ s.name }}</span>
+            <span class="subject-summary">{{ s.summary }}</span>
+        </a>
+    {% endfor %}
+</section>
+{% endblock %}

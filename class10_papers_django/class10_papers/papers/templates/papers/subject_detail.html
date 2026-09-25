@@ -1,0 +1,49 @@
+{% extends 'papers/base.html' %}
+
+{% block title %}{{ subject.name }} - Class 10{% endblock %}
+
+{% block content %}
+<a href="{% url 'home' %}" class="back-link">&larr; Back to all subjects</a>
+
+<section class="subject-header">
+    <h1>{{ subject.icon }} {{ subject.name }}</h1>
+    <p>{{ subject.summary }}</p>
+</section>
+
+<section class="subject-content">
+    <h2>Syllabus Topics</h2>
+    <ul class="topic-list">
+        {% for topic in subject.topics %}
+            <li>{{ topic }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Sample Papers</h2>
+    <ul class="paper-list">
+        {% for paper in subject.sample_papers %}
+            <li><a href="{{ paper.link }}">{{ paper.title }}</a></li>
+        {% endfor %}
+    </ul>
+</section>
+
+<section class="query-section" id="query">
+    <h2>Ask a Question about {{ subject.name }}</h2>
+    <p>Stuck on a topic? Submit your question below and we'll get back to you.</p>
+    <form method="post" action="{% url 'subject_detail' slug %}#query">
+        {% csrf_token %}
+        <div class="form-row">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-row">
+            <label for="email">Email (optional)</label>
+            <input type="email" id="email" name="email">
+        </div>
+        <div class="form-row">
+            <label for="question">Your Question</label>
+            <textarea id="question" name="question" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Submit Question</button>
+    </form>
+</section>
+{% endblock %}
